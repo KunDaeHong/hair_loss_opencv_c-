@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "runner": "terminal",
+    "type": "shell",
+    "echoCommand": true,
+    "presentation": {
+        "reveal": "always"
+    },
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang++ Build with OpenCV (macOS)",
+            "command": "/usr/bin/clang++",
+            "args": [
+              "-fcolor-diagnostics",
+              "-fansi-escape-codes",
+              "-std=c++17",
+              "-stdlib=libc++",
+              "-g",
+              "${file}",
+              "-o",
+              "${fileDirname}/${fileBasenameNoExtension}",
+              "-I${workspaceFolder}/Utils",
+              "-I${workspaceFolder}/Libraries/install/include/opencv4",
+              "-L${workspaceFolder}/Libraries/install/lib",
+              "-lopencv_core",
+              "-lopencv_highgui",
+              "-lopencv_imgcodecs",
+              "-lopencv_imgproc"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "디버거에서 생성된 작업입니다."
+        },
+
+        {
+          "type": "shell",
+          "label": "C/C++: clang++ Build with OpenCV, Cmake (macOS)",
+          "command": "/bin/bash",
+          "args": ["-c", "cmake -S . -B build -DPLATFORM_MAC=ON -DCMAKE_BUILD_TYPE=Debug && cmake --build build"],
+          "group": "build",
+          "problemMatcher": []
+        }
+    ]
+}

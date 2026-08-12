@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+          "name": "Mac",
+          "includePath": [
+            "${workspaceFolder}/Libraries/install/include/opencv4",
+            "${workspaceFolder}/src/include",
+            "${workspaceFolder}/src/Utils/train/include",
+            "${workspaceFolder}/src/Utils/train/core/include"
+          ],
+          "defines": ["__OPENCL_VERSION__=120", "CL_TARGET_OPENCL_VERSION=120"],
+          "macFrameworkPath": [
+            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks",
+            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenCL.framework/Versions/A/Headers"
+          ],
+          "cStandard": "c17",
+          "cppStandard": "c++17",
+          "intelliSenseMode": "macos-clang-arm64",
+          "compilerPath": "/usr/bin/clang"
+        }
+    ],
+    "version": 4
+}

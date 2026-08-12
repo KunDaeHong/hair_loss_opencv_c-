@@ -1,0 +1,22 @@
+# ignore cmake build files
+build
+output
+build_mac
+output_mac
+build_android
+output_android
+output_mac_hsv_version
+platforms
+main.dSYM
+
+# ignore libraries build files
+Resources/raw
+Libraries/install
+Libraries/opencv
+Libraries/openexr
+Libraries/opencv_static
+Libraries/opencv_static_android
+build_dll/
+output_dll/
+
+
