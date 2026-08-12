@@ -138,7 +138,7 @@ namespace BaldCV
 #endif
     }
 
-    void HairFilter::findContourWithContrast(Mat &targetImg, std::vector<std::vector<cv::Point>> &outputContours, cv::Scalar skin, cv::Scalar hair)
+    void HairFilter::findContourWithContrast(Mat &targetImg, std::vector<std::vector<cv::Point>> &outputContours, cv::Scalar skin, cv::Scalar head)
     {
         // Step 1:  Make brighter on dark side ONLY.
         Mat yuvImgRead, afterClahe;
@@ -160,10 +160,10 @@ namespace BaldCV
         // cv::Canny(hairYChannel, hairEdges, 50, 90);
 
         // Step 2: Remove noise and change to image color to yuv color standard.
-        Mat waterHairShadeImg = HairFilter::bilateralFilterHair(afterClahe);
-
         Mat ycrcbImg;
         vector<Mat> ycrcbImgChannels;
+        Mat waterHairShadeImg = HairFilter::bilateralFilterHair(afterClahe);
+
         cv::cvtColor(waterHairShadeImg, ycrcbImg, cv::COLOR_BGR2YCrCb);
         cv::split(ycrcbImg, ycrcbImgChannels);
 
@@ -172,15 +172,13 @@ namespace BaldCV
         waitKey(0);
 #endif
 
-        // Step 3: Detecting hair color only
+        // Step 3: Detecting head color only (whole head)
         // 2 Channels YcbcrImg
-        Mat ycrcbImg2Ch;
-        cv::merge(vector<Mat>{ycrcbImgChannels[1], ycrcbImgChannels[2]}, ycrcbImg2Ch);
 
         int deltaHairY = 50;                      // 백인의 금발인 경우 측정이 꽤 어려움.
         int deltaHairCr = 15;                     // Cr(붉은기) 채널의 허용 오차 범위
         int deltaHairCb = 15;                     // Cb(푸른기) 채널의 허용 오차 범위
-        Scalar headYcrcb = scalarBGR2Ycrcb(hair); // 실제 머리카락 색상
+        Scalar headYcrcb = scalarBGR2Ycrcb(head); // 실제 머리카락 색상
 
         Scalar lowHead(headYcrcb[0] - deltaHairY, std::max(0, (int)(headYcrcb[1] - deltaHairCr)), std::max(0, (int)(headYcrcb[2] - deltaHairCb)));
         Scalar highHead(headYcrcb[0] + deltaHairY, std::min(255, (int)(headYcrcb[1] + deltaHairCr)), std::min(255, (int)(headYcrcb[2] + deltaHairCb)));
@@ -192,9 +190,8 @@ namespace BaldCV
         waitKey(0);
 #endif
 
-        // Step 4: Detecting skin color only
+        // Step 4: Detecting skin color only and remove skin color on mask
         Mat removedHairImg;
-        ycrcbImg2Ch.copyTo(removedHairImg);
         removedHairImg.setTo(Scalar(0, 0), maskHeadYcrcb);
 
         // 피부
