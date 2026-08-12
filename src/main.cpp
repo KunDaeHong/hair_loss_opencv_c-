@@ -3,27 +3,26 @@
 #include <opencv2/opencv.hpp>
 
 // Utils
-// #include <bayabas_hair_filter.hpp>
-#include <bayabas_basic_utils.hpp>
+#include <hair_filter.hpp>
 
 // Namespace
 using namespace cv;
 using namespace std;
-using namespace BayabasCV;
+using namespace BaldCV;
 
 int main()
 {
-    // string path = "/Users/hongdaehyeon/Desktop/project/cv/bayabasHairLossCV/Resources/errorData/errorData6.png";
-    //  BayabasHairFilter test = BayabasHairFilter(path);
+    string path = "/Users/hongdaehyeon/Desktop/project/cv/bayabasHairLossCV/Resources/errorData/errorData6.png";
+    HairFilter test = HairFilter(path);
 
-    ///* // 이미지 투영 및 명암 기반 컨투어
-    // BayabasHairFilter test = BayabasHairFilter(path);
-    // test.warpHairContours();
-    // waitKey(0);
+    /* // 이미지 투영 및 명암 기반 컨투어
+    HairFilter test = HairFilter(path);
+    test.warpHairContours();
+    waitKey(0);
     //*/
 
-    /* // 바이레터럴과 이미지 컨투어 찾기
-    BayabasHairFilter test = BayabasHairFilter(path);
+    //* // 바이레터럴과 이미지 컨투어 찾기
+    HairFilter test = HairFilter(path);
     std::vector<std::vector<cv::Point>> outputContours = {};
     Mat bilateralFiltered = test.bilateralFilterHair(test.imgRead);
 
@@ -37,29 +36,29 @@ int main()
     test.findContourWithContrast(test.imgRead, outputContours);
     //*/
 
-    /* //실제 작동되는 테스트 데이터(실제 데이터로 넣어두었습니다.)
-    vector<BaldArea> area        = {};
-    BayabasCV::Point analyzeSize = {720, 720};
-    vector<BayabasCV::Point> headParts = {
+    //* //실제 작동되는 테스트 데이터(실제 데이터로 넣어두었습니다.)
+    vector<BaldArea> area = {};
+    BaldCV::Point analyzeSize = {720, 720};
+    vector<BaldCV::Point> headParts = {
         {static_cast<int>(56.445993031358881), static_cast<int>(56.445993031358881)},
         {static_cast<int>(663.55400696864103), static_cast<int>(56.445993031358881)},
         {static_cast<int>(663.55400696864103), static_cast<int>(504.72196383243727)},
         {static_cast<int>(56.445993031358881), static_cast<int>(504.72196383243727)},
     };
 
-    vector<BayabasCV::Point> foreheadParts = {
+    vector<BaldCV::Point> foreheadParts = {
         {static_cast<int>(174.11228851611048), static_cast<int>(504.72196383243727)},
         {static_cast<int>(553.39832608929919), static_cast<int>(504.72196383243727)},
         {static_cast<int>(553.39832608929919), static_cast<int>(636.45765998707179)},
         {static_cast<int>(174.11228851611048), static_cast<int>(636.45765998707179)},
     };
 
-    BayabasHairFilter test = BayabasHairFilter(path);
-    vector<std::vector<BayabasCV::Point>> result = test.getHairLossContourList(analyzeSize, foreheadParts, headParts, area);
+    HairFilter test = HairFilter(path);
+    vector<std::vector<BaldCV::Point>> result = test.getHairLossContourList(analyzeSize, foreheadParts, headParts, area);
     std::printf("fin");
     //*/
 
-    ///*
+    /*
     // 전용 파장 카메라로 테스트를 위한 코드
     VideoCapture cap(0);
 
