@@ -192,6 +192,7 @@ namespace BaldCV
 
         // Step 4: Detecting skin color only and remove skin color on mask
         Mat removedHairImg;
+        cv::merge(vector<Mat>{ycrcbImgChannels[1], ycrcbImgChannels[2]}, removedHairImg);
         removedHairImg.setTo(Scalar(0, 0), maskHeadYcrcb);
 
         // 피부

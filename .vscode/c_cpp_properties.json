@@ -5,8 +5,7 @@
           "includePath": [
             "${workspaceFolder}/Libraries/install/include/opencv4",
             "${workspaceFolder}/src/include",
-            "${workspaceFolder}/src/Utils/train/include",
-            "${workspaceFolder}/src/Utils/train/core/include"
+            "${workspaceFolder}/src/include/Entities"
           ],
           "defines": ["__OPENCL_VERSION__=120", "CL_TARGET_OPENCL_VERSION=120"],
           "macFrameworkPath": [

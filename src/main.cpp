@@ -21,7 +21,7 @@ int main()
     waitKey(0);
     //*/
 
-    //* // 바이레터럴과 이미지 컨투어 찾기
+    /* // 바이레터럴과 이미지 컨투어 찾기
     HairFilter test = HairFilter(path);
     std::vector<std::vector<cv::Point>> outputContours = {};
     Mat bilateralFiltered = test.bilateralFilterHair(test.imgRead);
@@ -53,7 +53,6 @@ int main()
         {static_cast<int>(174.11228851611048), static_cast<int>(636.45765998707179)},
     };
 
-    HairFilter test = HairFilter(path);
     vector<std::vector<BaldCV::Point>> result = test.getHairLossContourList(analyzeSize, foreheadParts, headParts, area);
     std::printf("fin");
     //*/
